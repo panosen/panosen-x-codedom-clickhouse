@@ -123,7 +123,7 @@ public abstract class SqlEngine {
                 .write(Marks.WHITESPACE)
                 .write(mathOperator)
                 .write(Marks.WHITESPACE)
-                .write(Marks.QUESTION);
+                .write(":p" + parameters.size());
         parameters.add(simpleCondition.getValue());
     }
 
@@ -137,7 +137,7 @@ public abstract class SqlEngine {
         codeWriter.write(Marks.LEFT_BRACKET);
 
         for (int i = 0, length = inCondition.getValues().size(); i < length; i++) {
-            codeWriter.write(Marks.QUESTION);
+            codeWriter.write(":p" + parameters.size());
             parameters.add(inCondition.getValues().get(i));
 
             if (i < length - 1) {

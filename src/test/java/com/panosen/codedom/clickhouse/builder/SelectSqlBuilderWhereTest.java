@@ -28,7 +28,7 @@ public class SelectSqlBuilderWhereTest {
         String actual = generationResponse.getSql();
         Parameters parameters = generationResponse.getParameters();
 
-        String expected = "select * from `student` where `age` = ? limit 10, 15;";
+        String expected = "select * from `student` where `age` = :p0 limit 10, 15;";
 
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(1, parameters.size());
@@ -49,7 +49,7 @@ public class SelectSqlBuilderWhereTest {
         String actual = generationResponse.getSql();
         Parameters parameters = generationResponse.getParameters();
 
-        String expected = "select * from `student` where `x` = ? and `y` = ? limit 10, 15;";
+        String expected = "select * from `student` where `x` = :p0 and `y` = :p1 limit 10, 15;";
 
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(2, parameters.size());
@@ -74,7 +74,7 @@ public class SelectSqlBuilderWhereTest {
         String actual = generationResponse.getSql();
         Parameters parameters = generationResponse.getParameters();
 
-        String expected = "select * from `student` where (`x` = ? or `y` = ?) and (`a` = ? or `b` = ?) limit 10, 15;";
+        String expected = "select * from `student` where (`x` = :p0 or `y` = :p1) and (`a` = :p2 or `b` = :p3) limit 10, 15;";
 
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(4, parameters.size());
@@ -103,7 +103,7 @@ public class SelectSqlBuilderWhereTest {
         String actual = generationResponse.getSql();
         Parameters parameters = generationResponse.getParameters();
 
-        String expected = "select * from `student` where (`x` = ? and `y` = ?) or (`a` = ? and `b` = ?) limit 10, 15;";
+        String expected = "select * from `student` where (`x` = :p0 and `y` = :p1) or (`a` = :p2 and `b` = :p3) limit 10, 15;";
 
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(4, parameters.size());
@@ -127,7 +127,7 @@ public class SelectSqlBuilderWhereTest {
         String actual = generationResponse.getSql();
         Parameters parameters = generationResponse.getParameters();
 
-        String expected = "select * from `student` where `age` in (?, ?) limit 10, 15;";
+        String expected = "select * from `student` where `age` in (:p0, :p1) limit 10, 15;";
 
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(2, parameters.size());
@@ -149,7 +149,7 @@ public class SelectSqlBuilderWhereTest {
         String actual = generationResponse.getSql();
         Parameters parameters = generationResponse.getParameters();
 
-        String expected = "select * from `student` where `age` in (?, ?) limit 10, 15;";
+        String expected = "select * from `student` where `age` in (:p0, :p1) limit 10, 15;";
 
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(2, parameters.size());
@@ -171,7 +171,7 @@ public class SelectSqlBuilderWhereTest {
         String actual = generationResponse.getSql();
         Parameters parameters = generationResponse.getParameters();
 
-        String expected = "select * from `student` where `age` in (?, ?) limit 10, 15;";
+        String expected = "select * from `student` where `age` in (:p0, :p1) limit 10, 15;";
 
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(2, parameters.size());
@@ -195,7 +195,7 @@ public class SelectSqlBuilderWhereTest {
         String actual = generationResponse.getSql();
         Parameters parameters = generationResponse.getParameters();
 
-        String expected = "select * from `student` where `name` in (?, ?) limit 10, 15;";
+        String expected = "select * from `student` where `name` in (:p0, :p1) limit 10, 15;";
 
         Assert.assertEquals(expected, actual);
         Assert.assertEquals(2, parameters.size());

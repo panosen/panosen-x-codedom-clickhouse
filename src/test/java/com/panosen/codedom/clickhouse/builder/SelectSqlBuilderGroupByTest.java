@@ -38,7 +38,7 @@ public class SelectSqlBuilderGroupByTest {
         GenerationResponse response = new SelectSqlEngine().generate(selectSqlBuilder);
 
         String actual = response.getSql();
-        String expected = "select * from `student` group by `name`, `age` having `a` = ?;";
+        String expected = "select * from `student` group by `name`, `age` having `a` = :p0;";
         Assert.assertEquals(expected, actual);
 
         Parameters parameters = response.getParameters();
