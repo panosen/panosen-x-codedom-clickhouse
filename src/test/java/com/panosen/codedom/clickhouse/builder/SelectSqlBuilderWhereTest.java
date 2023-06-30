@@ -202,4 +202,25 @@ public class SelectSqlBuilderWhereTest {
         Assert.assertEquals("A", parameters.get(0).getValue());
         Assert.assertEquals("B", parameters.get(1).getValue());
     }
+
+    @Test
+    public void build12() {
+
+        SelectSqlBuilder selectSqlBuilder = new SelectSqlBuilder()
+                .from("student")
+                .limit(10, 15);
+
+        selectSqlBuilder.where().must()
+                .gte("t", 12)
+                .lte("t", 13);
+
+        GenerationResponse generationResponse = new SelectSqlEngine().generate(selectSqlBuilder);
+        String actual = generationResponse.getSql();
+        Parameters parameters = generationResponse.getParameters();
+
+        String expected = "select * from `student` where `t` >= :p0 and `t` <= :p1 limit 10, 15;";
+
+        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(2, parameters.size());
+    }
 }
