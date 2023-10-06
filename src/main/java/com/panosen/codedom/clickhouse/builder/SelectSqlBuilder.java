@@ -12,19 +12,28 @@ public class SelectSqlBuilder {
         return selectSql;
     }
 
-    public SelectSqlBuilder column(String column) {
-        if (selectSql.getColumnNameList() == null) {
-            selectSql.setColumnNameList(Lists.newArrayList());
+    public ColumnBuilder column(String columnName) {
+        if (selectSql.getColumnList() == null) {
+            selectSql.setColumnList(Lists.newArrayList());
         }
-        selectSql.getColumnNameList().add(column);
-        return this;
+
+        ColumnBuilder columnBuilder = new ColumnBuilder();
+        selectSql.getColumnList().add(columnBuilder.getColumn());
+
+        columnBuilder.name(columnName);
+
+        return columnBuilder;
     }
 
-    public SelectSqlBuilder columns(String... columns) {
-        if (selectSql.getColumnNameList() == null) {
-            selectSql.setColumnNameList(Lists.newArrayList());
+    public SelectSqlBuilder columns(String... columnNames) {
+        if (selectSql.getColumnList() == null) {
+            selectSql.setColumnList(Lists.newArrayList());
         }
-        selectSql.getColumnNameList().addAll(Lists.newArrayList(columns));
+        for (String columnName : columnNames) {
+            ColumnBuilder columnBuilder = new ColumnBuilder();
+            selectSql.getColumnList().add(columnBuilder.getColumn());
+            columnBuilder.name(columnName);
+        }
         return this;
     }
 

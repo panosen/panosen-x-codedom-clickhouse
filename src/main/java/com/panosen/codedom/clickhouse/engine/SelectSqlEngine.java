@@ -32,9 +32,11 @@ public class SelectSqlEngine extends SqlEngine {
         codeWriter.write(Keywords.SELECT).write(Marks.WHITESPACE);
 
         // columns
-        if (selectSql.getColumnNameList() != null && !selectSql.getColumnNameList().isEmpty()) {
-            for (int index = 0, length = selectSql.getColumnNameList().size(); index < length; index++) {
-                codeWriter.write(Marks.BACKQUOTE).write(selectSql.getColumnNameList().get(index)).write(Marks.BACKQUOTE);
+        if (selectSql.getColumnList() != null && !selectSql.getColumnList().isEmpty()) {
+            for (int index = 0, length = selectSql.getColumnList().size(); index < length; index++) {
+                Column column = selectSql.getColumnList().get(index);
+                generateColumn(codeWriter, column);
+
                 if (index < length - 1) {
                     codeWriter.write(Marks.COMMA).write(Marks.WHITESPACE);
                 }
@@ -77,6 +79,15 @@ public class SelectSqlEngine extends SqlEngine {
 
         // ;
         codeWriter.write(Marks.SEMICOLON);
+    }
+
+    private static void generateColumn(CodeWriter codeWriter, Column column) {
+
+        codeWriter.write(Marks.BACKQUOTE).write(column.getColumnName()).write(Marks.BACKQUOTE);
+
+        if (!Strings.isNullOrEmpty(column.getColumnAs())) {
+            codeWriter.write(Marks.WHITESPACE).write(Keywords.AS).write(Marks.WHITESPACE).write(column.getColumnAs());
+        }
     }
 
     private void generateOrderBy(List<OrderBy> orderByList, CodeWriter codeWriter) {

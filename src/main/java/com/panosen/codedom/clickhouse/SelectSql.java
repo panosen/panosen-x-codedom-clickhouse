@@ -18,9 +18,9 @@ public class SelectSql extends Sql {
     private String tableName;
 
     /**
-     * select ${columnNameList} from table
+     * select ${columnList} from table
      */
-    private List<String> columnNameList;
+    private List<Column> columnList;
 
     /**
      * Only useful when limitSize is set.
@@ -64,12 +64,12 @@ public class SelectSql extends Sql {
         this.tableName = tableName;
     }
 
-    public List<String> getColumnNameList() {
-        return columnNameList;
+    public List<Column> getColumnList() {
+        return columnList;
     }
 
-    public void setColumnNameList(List<String> columnNameList) {
-        this.columnNameList = columnNameList;
+    public void setColumnList(List<Column> columnList) {
+        this.columnList = columnList;
     }
 
     public Integer getLimitFrom() {
